@@ -4,6 +4,8 @@ from sqlalchemy.orm import validates
 class Appearance(db.Model, SerializerMixin):
     __tablename__= "appearances"
 
+    serialize_rules = ('-guest.appearances', '-episode.appearances')
+
     id = db.Column(db.Integer, primary_key=True)
     rating = db.Column(db.Integer, nullable=False)
     guest_id = db.Column(db.Integer, db.ForeignKey("guests.id"), nullable=False)

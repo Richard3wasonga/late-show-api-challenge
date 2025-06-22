@@ -4,8 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 class User(db.Model, SerializerMixin):
     __tablename__= "users"
 
+    serialize_rules = ('-appearances.user', '-password_hash',)
+
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.string, unique=True, nullable=False)
+    username = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
 
     def set_password(self, password):
