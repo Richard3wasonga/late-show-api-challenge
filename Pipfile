@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 python-dotenv = "*"
 sqlalchemy-serializer = "*"
 flask-restful = "*"
+faker = "*"
 
 [dev-packages]
 

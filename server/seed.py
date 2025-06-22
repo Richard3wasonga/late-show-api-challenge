@@ -1,9 +1,12 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from random import randint, sample, choice as rc
 from datetime import date, timedelta
 from faker import Faker
-
-from server.app import app
-from server.models import db, Guest, Episode, Appearance, User
+from app import app
+from models import db, Guest, Episode, Appearance, User
 
 fake = Faker()
 
