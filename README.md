@@ -4,16 +4,20 @@
 ![Flask](https://img.shields.io/badge/Flask-Web%20API-black?style=flat-square&logo=flask)
 ![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)
 ![SQLite](https://img.shields.io/badge/database-SQLite-blue?style=flat-square&logo=sqlite)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-DB-blue?style=flat-square&logo=postgresql)
+![Build](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square)
+![Maintained](https://img.shields.io/badge/maintained-yes-green?style=flat-square)
 
 
-> A secure, **RESTFUL Flask API** for managing late night show guests, episodes, and appearances. Features include User registratin/login JWT authentication, ad relational endpoints.
+
+> A secure, **RESTFUL Flask API** for managing late night show guests, episodes, and appearances. Features include User registration/login JWT authentication, and relational endpoints.
 
 ---
 
 ## **Requirements**
 
 - Flask backend API with postgreSQL
-- JWT-based authentication (acess + refresh tokens)
+- JWT-based authentication (access + refresh tokens)
 - Models: `User`, `Guest`, `Episode`, `Appearance`
 - Secure endpoints with decorators
 - Token blacklisting and expiration handling
@@ -44,7 +48,7 @@
    cd late-show-api
    ```
 
-3. Install dependices:
+3. Install dependencies:
    ```bash
    pipenv install
    ```
@@ -102,7 +106,7 @@
 ```markdown
 
 .
-├── challenge-4-lateshow.postman_cillection.json
+├── challenge-4-lateshow.postman_collection.json
 ├── migrations
 │   ├── alembic.ini
 │   ├── env.py
@@ -142,6 +146,35 @@
 
 ---
 
+## **Create a `.env` File**
+In the root of your project, create a .env file and add the following:
+
+```json
+
+DATABASE_URI=postgresql://<your_username>:<your_password>@localhost:5432/late_show_db
+JWT_SECRET_KEY=<your_super_secret_jwt_key>
+
+```
+## **Replace Placeholders:**
+
+| Key              | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| `DATABASE_URI`   | Your PostgreSQL connection string. Make sure the database already exists.   |
+| `JWT_SECRET_KEY` | A long, random string used to secure JWT tokens. Generate securely.         |
+
+
+## **Do Not Share `.env``**
+
+Make sure `.env` is included in your `.gitignore` file:
+
+```bash
+
+# .gitignore
+.env
+
+```
+This keeps your credentials safe and secure.
+
 ## **API Routes Summary**
 
 
@@ -161,7 +194,7 @@
 
 ### **GET/`guests`**
 
-Retrive a list of guests:
+Retrieve a list of guests:
 
 ```json
 
@@ -219,7 +252,7 @@ Retrive a specific episode by a specific id:
 
 ### **DELETE/`episodes<int:id>`**
 
-Delete a specifc episode:
+Delete a specific episode:
 
 ```json
 
@@ -233,7 +266,7 @@ Delete a specifc episode:
 
 ### **POST/`register`**
 
-Registers a new usre:
+Registers a new user:
 
 ```json
 
@@ -294,7 +327,7 @@ Authorization: Bearer <JWT_ACCESS_TOKEN>
 
 Headers:
 
-```pgsql
+```JSON
 
 Authorization: Bearer <JWT_ACCESS_TOKEN>
 Content-Type: application/json
@@ -345,6 +378,15 @@ Error(validation):
 ```
 
 ![appearances](./screenshot/appearances.png)
+
+## **Model & Relationship**
+
+- A `User` can register and authenticate with a password and username.
+- A `Guest` can appear in many `Episodes` (via `Appearance`).
+- An `Episode` can feature many `Guests` (via `Appearance`).
+- An `Appearance` is a join table connecting `Guest` and `Episode`, and it also stores a `rating` (1–5).
+
+![relationships](./screenshot/relationship.png)
 
 ## **Tech Stack**
 
