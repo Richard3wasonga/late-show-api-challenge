@@ -1,6 +1,6 @@
 from flask import Blueprint, request, make_response, jsonify
 from flask_restful import Api, Resource
-from flask_jwt_extended import create_access_token
+from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
 from ..models import User, db
 from werkzeug.exceptions import BadRequest
 from sqlalchemy.exc import IntegrityError
@@ -57,12 +57,24 @@ class Login(Resource):
 
             if user and user.check_password(password):
                 token = create_access_token(identity=user.id)
-                return make_response(jsonify({"access_token": token}), 200)
+                refresh_token = create_refresh_token(identity=user.id)
+                return make_response(jsonify({
+                    "access_token": token,
+                    "refresh_token": refresh_token
+                }), 200)
 
             return make_response(jsonify({"error": "Invalid username or password"}), 401)
 
         except Exception as e:
             return make_response(jsonify({"error": str(e)}), 500)
 
+class RefreshToken(Resource):
+    @jwt_required(refresh=True)
+    def post(self):
+        identity = get_jwt_identity()
+        new_token = create_access_token(identity=identity)
+        return make_response(jsonify({"access_token": new_token}), 200)
+
 api.add_resource(Register, '/register')
 api.add_resource(Login, '/login')
+api.add_resource(RefreshToken, '/refresh')
