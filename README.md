@@ -149,7 +149,7 @@
 ## **Create a `.env` File**
 In the root of your project, create a .env file and add the following:
 
-```json
+```bash
 
 DATABASE_URI=postgresql://<your_username>:<your_password>@localhost:5432/late_show_db
 JWT_SECRET_KEY=<your_super_secret_jwt_key>
@@ -327,7 +327,7 @@ Authorization: Bearer <JWT_ACCESS_TOKEN>
 
 Headers:
 
-```JSON
+```json
 
 Authorization: Bearer <JWT_ACCESS_TOKEN>
 Content-Type: application/json
@@ -390,7 +390,7 @@ Error(validation):
 
 ## **Tech Stack**
 
-| Tool / Library         | Description                                              |
+|Tool / Library          | Description                                              |
 |------------------------|----------------------------------------------------------|
 | **Python 3.12**        | Core programming language                                |
 | **Flask**              | Web framework for building the REST API                  |
