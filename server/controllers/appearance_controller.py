@@ -3,7 +3,7 @@ from flask_restful import Api, Resource
 from flask_jwt_extended import jwt_required
 from sqlalchemy.exc import IntegrityError
 from werkzeug.exceptions import BadRequest
-from ..models import Appearance, db, Guest, Episode
+from models import Appearance, db, Guest, Episode
 
 appearance_bp = Blueprint('appearance',__name__)
 api = Api(appearance_bp)

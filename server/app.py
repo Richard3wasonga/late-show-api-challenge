@@ -1,10 +1,14 @@
+import sys
+import os
+
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from flask import Flask, jsonify, make_response
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, get_jwt
-from .config import Config
-from .models import db
-from .models import Guest, Episode, Appearance, User, TokenBlocklist
-from .controllers import guest_bp, episode_bp, appearance_bp, auth_bp
+from config import Config
+from models import db
+from models import Guest, Episode, Appearance, User, TokenBlocklist
+from controllers import guest_bp, episode_bp, appearance_bp, auth_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)

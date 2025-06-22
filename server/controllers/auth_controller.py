@@ -1,7 +1,7 @@
 from flask import Blueprint, request, make_response, jsonify
 from flask_restful import Api, Resource
 from flask_jwt_extended import create_access_token, create_refresh_token, jwt_required, get_jwt_identity
-from ..models import User, db
+from models import User, db
 from werkzeug.exceptions import BadRequest
 from sqlalchemy.exc import IntegrityError
 

@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, make_response
 from flask_restful import Api, Resource
 from flask_jwt_extended import jwt_required
-from ..models import Episode, db
+from models import Episode, db
 
 episode_bp = Blueprint('episode', __name__)
 api = Api(episode_bp)
