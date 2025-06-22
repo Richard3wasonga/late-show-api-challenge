@@ -327,7 +327,7 @@ Authorization: Bearer <JWT_ACCESS_TOKEN>
 
 Headers:
 
-```json
+```bash
 
 Authorization: Bearer <JWT_ACCESS_TOKEN>
 Content-Type: application/json
