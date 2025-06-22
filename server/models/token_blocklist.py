@@ -1,5 +1,5 @@
 from . import db
-from datetime import datatime
+from datetime import datetime
 
 class TokenBlocklist(db.Model):
     __tablename__ = 'token_blocklist'
