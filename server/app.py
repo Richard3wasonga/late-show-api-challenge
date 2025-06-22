@@ -5,6 +5,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from flask import Flask, jsonify, make_response
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager, get_jwt
+from jwt.exceptions import ExpiredSignatureError
 from config import Config
 from models import db
 from models import Guest, Episode, Appearance, User, TokenBlocklist
@@ -55,6 +56,10 @@ def jwt_invalid_token(error):
 @jwt.unauthorized_loader
 def jwt_missing_token(error):
     return make_response(jsonify({"error": "Missing token"}), 401)
+
+@app.errorhandler(ExpiredSignatureError)
+def handle_expired_signature(e):
+    return make_response(jsonify({"error": "Token has expired. Please log in again."}), 401)
 
 
 @app.route('/')
