@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify, make_response
+from flask import Blueprint, jsonify, make_response
 from flask_restful import Api, Resource
 from flask_jwt_extended import jwt_required
 from ..models import Episode, db
@@ -12,8 +12,7 @@ class EpisodeList(Resource):
         if not episodes:
             return make_response(jsonify({'message': 'No episodes found', 'episodes': []}), 200)
 
-        episode_list = [episode.to_dict() for episode in episodes]
-        return make_response(jsonify(episode_list), 200)
+        return make_response(jsonify([episode.to_dict() for episode in episodes]), 200)
 
 class EpisodeDetail(Resource):
     def get(self, id):
