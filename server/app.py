@@ -13,10 +13,10 @@ db.init_app(app)
 migrate = Migrate(app, db)
 jwt = JWTManager(app)
 
-app.register_blueprint(guest_bp, url_prefix='/guests')
-app.register_blueprint(episode_bp, url_prefix='/episodes')
-app.register_blueprint(appearance_bp, url_prefix='/appearances')
-app.register_blueprint(auth_bp, url_prefix='/auth')
+app.register_blueprint(guest_bp)
+app.register_blueprint(episode_bp)
+app.register_blueprint(appearance_bp)
+app.register_blueprint(auth_bp)
 
 @app.errorhandler(404)
 def not_found_error(e):
