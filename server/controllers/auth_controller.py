@@ -56,8 +56,8 @@ class Login(Resource):
             user = User.query.filter_by(username=username).first()
 
             if user and user.check_password(password):
-                token = create_access_token(identity=user.id)
-                refresh_token = create_refresh_token(identity=user.id)
+                token = create_access_token(identity=str(user.id))
+                refresh_token = create_refresh_token(identity=str(user.id))
                 return make_response(jsonify({
                     "access_token": token,
                     "refresh_token": refresh_token
