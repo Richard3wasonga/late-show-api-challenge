@@ -4,10 +4,7 @@ from flask_jwt_extended import JWTManager
 from .config import Config
 from .models import db
 from .models import Guest, Episode, Appearance, User
-from .controllers.guest_controller import guest_bp
-from .controllers.episode_controller import episode_bp
-from .controllers.appearance_controller import appearance_bp
-from .controllers.auth_controller import auth_bp
+from .controllers import guest_bp, episode_bp, appearance_bp, auth_bp
 
 app = Flask(__name__)
 app.config.from_object(Config)
