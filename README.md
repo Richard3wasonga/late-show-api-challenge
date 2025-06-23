@@ -145,6 +145,15 @@
 ```
 
 ---
+## **PostgreSQL DB setup**
+
+Create your own database in Postgres:
+
+```bash
+
+CREATE DATABASE late_show_db;
+
+```
 
 ## **Create a `.env` File**
 In the root of your project, create a .env file and add the following:
